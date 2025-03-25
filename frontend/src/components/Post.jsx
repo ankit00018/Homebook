@@ -16,8 +16,8 @@ const Post = ({ post }) => {
     const [open, setOpen] = useState(false);
     const { user } = useSelector(store => store.auth);
     const { posts } = useSelector(store => store.post);
-    const [liked, setLiked] = useState(post.likes?.includes(user?._id) || false);
-    const [postLike, setPostLike] = useState(post.likes?.length);
+    const [liked, setLiked] = useState(post.likes.includes(user?._id) || false);
+    const [postLike, setPostLike] = useState(post.likes.length);
     const [comment, setComment] = useState(post.comments);
     const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ const Post = ({ post }) => {
     const likeOrDislikeHandler = async () => {
         try {
             const action = liked ? 'dislike' : 'like';
-            const res = await axios.get(`http://localhost:8000/api/v1/post/${post._id}/${action}`, { withCredentials: true });
+            const res = await axios.get(`httpp://localhost:8000/api/v1/post/${post._id}/${action}`, { withCredentials: true });
             console.log(res.data);
             if (res.data.success) {
                 const updatedLikes = liked ? postLike - 1 : postLike + 1;
@@ -58,7 +58,7 @@ const Post = ({ post }) => {
     const commentHandler = async () => {
 
         try {
-            const res = await axios.post(`http://localhost:8000/api/v1/post/${post._id}/comment`, { text }, {
+            const res = await axios.post(`httpp://localhost:8000/api/v1/post/${post._id}/comment`, { text }, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -84,7 +84,7 @@ const Post = ({ post }) => {
 
     const deletePostHandler = async () => {
         try {
-            const res = await axios.delete(`http://localhost:8000/api/v1/post/delete/${post?._id}`, { withCredentials: true })
+            const res = await axios.delete(`httpp://localhost:8000/api/v1/post/delete/${post?._id}`, { withCredentials: true })
             if (res.data.success) {
                 const updatedPostData = posts.filter((postItem) => postItem?._id !== post?._id);
                 dispatch(setPosts(updatedPostData));
@@ -98,7 +98,7 @@ const Post = ({ post }) => {
 
     const bookmarkHandler = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/v1/post/${post?._id}/bookmark`, {withCredentials:true});
+            const res = await axios.get(`httpp://localhost:8000/api/v1/post/${post?._id}/bookmark`, {withCredentials:true});
             if(res.data.success){
                 toast.success(res.data.message);
             }
@@ -161,7 +161,7 @@ const Post = ({ post }) => {
                 {post.caption}
             </p>
             {
-                comment?.length > 0 && (
+                comment.length > 0 && (
                     <span onClick={() => {
                         dispatch(setSelectedPost(post));
                         setOpen(true);

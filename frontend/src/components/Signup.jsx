@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { Link, useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { useSelector } from 'react-redux';
+import HomeBook from "@/assets/HomebookLogo.jpg";
 
 const Signup = () => {
     const [input, setInput] = useState({
@@ -57,8 +58,8 @@ const Signup = () => {
         <div className='flex items-center w-screen h-screen justify-center'>
             <form onSubmit={signupHandler} className='shadow-lg flex flex-col gap-5 p-8'>
                 <div className='my-4'>
-                    <h1 className='text-center font-bold text-xl'>LOGO</h1>
-                    <p className='text-sm text-center'>Signup to see photos & videos from your friends</p>
+                    <img src={HomeBook} alt="Homebook_logo" className='flex items-center ml-6 h-20 w-500 mb-1 ' />
+                    <p className='text-sm text-center'>List properties, connect with buyers, and grow <br/> your real estate network!</p>
                 </div>
                 <div>
                     <span className='font-medium'>Username</span>
