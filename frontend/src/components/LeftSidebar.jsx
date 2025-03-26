@@ -18,7 +18,8 @@ import CreatePost from "./CreatePost";
 import { setPosts, setSelectedPost } from "@/redux/postSlice";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
-import Homebook from "@/assets/Homebook.png"
+import HomeBook from "@/assets/HomeBook.jpg";
+
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
@@ -79,17 +80,17 @@ const LeftSidebar = () => {
     { icon: <LogOut />, text: "Logout" },
   ];
   return (
-    <div className="fixed top-0 z-10 left-4 px-4 border-r border-gray-300 w-[16%] h-screen">
+    <div className="fixed top-0 z-10 left-0 px-4 border-r border-gray-300 w-[16%] h-screen bg-gradient-to-b from-gray-800 to-gray-900 text-white shadow-lg">
       <div className="flex flex-col ">
         {/* <h1 className="my-8 pl-3 font-bold text-xl">LOGO</h1> */}
-        <img className="mx-0 mt-5 w-[90%] h-[90%]" src={Homebook} alt="Homebook Logo" />
+        <img className="mx-0 mt-5 w-[90%] h-[90%] rounded-xl" src={HomeBook} alt="Homebook Logo" />
         <div>
           {sidebarItems.map((item, index) => {
             return (
               <div
                 onClick={() => sidebarHandler(item.text)}
                 key={index}
-                className="flex items-center gap-3 relative hover:bg-gray-100 cursor-pointer rounded-lg p-3 my-3"
+                className="flex items-center gap-3 relative hover:bg-gray-600 cursor-pointer rounded-lg p-3 my-3 transition-all duration-300"
               >
                 {item.icon}
                 <span>{item.text}</span>

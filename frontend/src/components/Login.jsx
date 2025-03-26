@@ -7,7 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthUser } from "@/redux/authSlice";
-import HomeBook from "@/assets/HomebookLogo.jpg";
+import HomeBook from "@/assets/HomeBook.jpg";
+
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -69,7 +70,7 @@ const Login = () => {
           <img
             src={HomeBook}
             alt="Homebook Logo"
-            className="flex items-center ml-2 h-20 w-500"
+            className="flex items-center ml-2 h-20 w-500 rounded-lg"
           />
         </div>
 
@@ -107,7 +108,7 @@ const Login = () => {
         )}
 
         <span className="text-center">
-          Dosent have an account?{" "}
+          Don't have an account?{" "}
           <Link to="/signup" className="text-blue-600">
             Signup
           </Link>
