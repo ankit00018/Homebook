@@ -1,6 +1,7 @@
 import {
   Heart,
   Home,
+  House,
   LogOut,
   MessageCircle,
   PlusSquare,
@@ -19,6 +20,7 @@ import { setPosts, setSelectedPost } from "@/redux/postSlice";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
 import HomeBook from "@/assets/HomeBook.jpg";
+import CreateListing from "./CreateListing";
 
 
 const LeftSidebar = () => {
@@ -29,6 +31,7 @@ const LeftSidebar = () => {
   );
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [openListing, setOpenListing] = useState(false);
 
   const logoutHandler = async () => {
     try {
@@ -58,6 +61,8 @@ const LeftSidebar = () => {
       navigate("/");
     } else if (textType === "Messages") {
       navigate("/chat");
+    } else if (textType === "Add Listing") {
+      setOpenListing(true);
     }
   };
 
@@ -65,6 +70,7 @@ const LeftSidebar = () => {
     { icon: <Home />, text: "Home" },
     { icon: <Search />, text: "Search" },
     { icon: <TrendingUp />, text: "Explore" },
+    { icon: <House />, text: "Add Listing" },
     { icon: <MessageCircle />, text: "Messages" },
     { icon: <Heart />, text: "Notifications" },
     { icon: <PlusSquare />, text: "Create" },
@@ -143,8 +149,8 @@ const LeftSidebar = () => {
           })}
         </div>
       </div>
-
-      <CreatePost open={open} setOpen={setOpen} />
+      {open && <CreatePost open={open} setOpen={setOpen} />}
+      {openListing && <CreateListing open={openListing} setOpen={setOpenListing} />}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./utils/db.js";
 import userRoute from "./routes/user.route.js";
 import postRoute from "./routes/post.route.js";
+import propertyRoute from "./routes/property.route.js"
 import messageRoute from "./routes/message.route.js";
 import { app, server } from "./socket/socket.js";
 import path from "path";
@@ -28,6 +29,8 @@ app.use(cors(corsOptions));
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/post", postRoute);
 app.use("/api/v1/message", messageRoute);
+app.use("/api/v1/property", propertyRoute);
+
 
 
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
