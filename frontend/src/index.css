@@ -105,3 +105,13 @@ body {
   top: 50% !important;
   transform: translate(-50%, -50%) !important;
 }
+
+/* Remove caret from all elements */
+* {
+  caret-color: transparent;
+}
+
+/* Re-enable caret for actual input fields */
+input, textarea, [contenteditable] {
+  caret-color: auto; 
+}

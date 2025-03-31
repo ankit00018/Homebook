@@ -20,6 +20,7 @@ import { setPosts, setSelectedPost } from "@/redux/postSlice";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
 import HomeBook from "@/assets/HomeBook.jpg";
+import HomePageLogo from "@/assets/HomePageLogo.jpg"
 import CreateListing from "./CreateListing";
 
 const LeftSidebar = () => {
@@ -48,6 +49,17 @@ const LeftSidebar = () => {
       toast.error(error.response.data.message);
     }
   };
+
+  // Add this utility function to determine active state
+const getPathForItem = (text) => {
+  switch(text) {
+    case "Home": return "/";
+    case "Profile": return `/profile/${user?._id}`;
+    case "Messages": return "/chat";
+    case "Explore": return "/property";
+    default: return "";
+  }
+};
 
   const sidebarHandler = (textType) => {
     if (textType === "Logout") {
@@ -92,7 +104,7 @@ const LeftSidebar = () => {
         {/* <h1 className="my-8 pl-3 font-bold text-xl">LOGO</h1> */}
         <img
           className="mx-0 mt-5 w-[90%] h-[90%] rounded-xl"
-          src={HomeBook}
+          src={HomePageLogo}
           alt="Homebook Logo"
         />
         <div>
@@ -101,7 +113,14 @@ const LeftSidebar = () => {
               <div
                 onClick={() => sidebarHandler(item.text)}
                 key={index}
-                className="flex items-center gap-3 relative hover:bg-[linear-gradient(to_top,#2E42BF_0%,#9142CA_50%,#D037A2_100%)] hover:text-white cursor-pointer rounded-lg p-3 my-3 transition-all duration-300"
+                className={`flex items-center gap-3 relative 
+                  hover:bg-[#2E42BF]/10 
+                  active:bg-[#2E42BF]/20 
+                  hover:text-[#2E42BF] 
+                  cursor-pointer rounded-lg p-3 my-3 
+                  transition-all duration-300
+                  ${location.pathname === getPathForItem(item.text) ? 
+                    "bg-[#2E42BF]/10 border-l-4 border-[#9142CA]" : ""}`}
               >
                 {item.icon}
                 <span>{item.text}</span>
