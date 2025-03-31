@@ -4,7 +4,7 @@ import LeftSidebar from './LeftSidebar'
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="flex-1 lg:ml-64 w-[calc(100%-16rem)]">
          <LeftSidebar/>
         <div>
             <Outlet/>

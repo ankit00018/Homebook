@@ -1,4 +1,107 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.carousel .control-dots {
+    bottom: 10px !important;
+    padding: 0 10px;
+  }
   
+  .carousel .control-dots .dot {
+    background: rgba(255,255,255,0.6) !important;
+    width: 6px !important;
+    height: 6px !important;
+    margin: 0 4px !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .carousel .control-dots .dot.selected {
+    background: #2563eb !important;
+    width: 20px !important;
+    border-radius: 4px !important;
+  }
+
+ /* Smooth transitions for mobile menu
+.transition-transform {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Ensure proper stacking context  */
+  .lg\:static {
+    position: static;
+  } 
+
+  /* Ensure full width for content  */
+.max-w-screen-2xl {
+    max-width: 1536px;
+  }  
+ 
+ /* In your main CSS file  */
+@media (min-width: 1024px) {
+    .lg\:ml-64 {
+      margin-left: 16rem; 
+    }
+    
+    .lg\:relative {
+      position: relative;
+    }
+  } 
+  
+  /* Add these styles  */
+body {
+    overflow-x: hidden;
+  } 
+  
+  .lg\:ml-64 {
+    margin-left: 16rem;
+  } 
+  
+  /* Ensure fixed positioning works properly */
+  .fixed {
+    transform: none !important;
+  } 
+  
+  /* Custom scrollbar for main content only   */
+.overflow-y-auto::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  /* Remove any remaining white space */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure full width for root element */
+  #root {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+
+  .sidebar-item {
+    @apply flex items-center gap-3 relative cursor-pointer rounded-lg p-3 my-3 transition-all duration-300;
+  }
+  
+  .sidebar-item:hover {
+    background: linear-gradient(to top, #2E42BF 0%, #9142CA 50%, #D037A2 100%);
+    color: white;
+  }
+
+  /* index.css */
+[role="dialog"] {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}

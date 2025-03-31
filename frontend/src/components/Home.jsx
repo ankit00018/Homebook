@@ -9,11 +9,14 @@ const Home = () => {
     useGetAllPost();
     useGetSuggestedUsers();
     return (
-        <div className='flex'>
-            <div className=" flex flex-col bg-gray-50 flex-grow items-center ml-20">
-                <Feed />
-                <Outlet />
-            </div>
+        <div className='flex flex-col lg:flex-row'>
+        {/* Scrollable Main Content */}
+        <div className="flex-1 overflow-y-auto h-screen">
+        <div className="w-full p-10">
+            <Feed />
+            <Outlet />
+          </div>
+        </div>
             <RightSidebar />
         </div>
     )

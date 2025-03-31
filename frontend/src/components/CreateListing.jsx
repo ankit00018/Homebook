@@ -90,7 +90,7 @@ const CreateListing = ({ open, setOpen}) => {
         <Dialog.Overlay className="fixed inset-0 bg-black/40" />
 
         <Dialog.Content className="fixed inset-0 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-[40%] relative">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[70%] relative">
             <button
               onClick={() => setOpen(false)}
               className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
@@ -115,7 +115,7 @@ const CreateListing = ({ open, setOpen}) => {
               </div>
             </div>
 
-            <form className="grid gap-3 mt-4" onSubmit={createListingHandler}>
+            <form className="grid gap-3 mt-7" onSubmit={createListingHandler}>
               <input
                 type="text"
                 placeholder="Title"

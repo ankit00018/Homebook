@@ -7,7 +7,7 @@ import SuggestedUsers from './SuggestedUsers';
 const RightSidebar = () => {
   const { user } = useSelector(store => store.auth);
   return (
-    <div className="w-[400px] h-screen sticky top-0 overflow-hidden px-4 py-6 [#F5F0E1] shadow-md  border border-gray-300">
+    <div className="w-[400px] h-screen sticky top-0 overflow-hidden px-4 py-6 bg-white shadow-md border border-gray-300 hidden lg:block">
       <div className='flex items-center gap-2'>
         <Link to={`/profile/${user?._id}`}>
           <Avatar>
@@ -22,7 +22,9 @@ const RightSidebar = () => {
 </span>
         </div>
       </div>
-      <SuggestedUsers/>
+      <div className="h-[calc(100vh-160px)] overflow-y-auto">
+        <SuggestedUsers />
+      </div>
     </div>
   )
 }

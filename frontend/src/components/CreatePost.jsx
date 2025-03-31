@@ -47,7 +47,7 @@ const CreatePost = ({ open, setOpen }) => {
         setOpen(false);
       }
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -55,9 +55,9 @@ const CreatePost = ({ open, setOpen }) => {
 
   return (
     <Dialog open={open}>
-      <DialogContent onInteractOutside={() => setOpen(false)}>
+      <DialogContent  onInteractOutside={() => setOpen(false)}  className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
         <DialogHeader className='text-center font-semibold'>Create New Post</DialogHeader>
-        <div className='flex gap-3 items-center'>
+        <div className='flex gap-3'>
           <Avatar>
             <AvatarImage src={user?.profilePicture} alt="img" />
             <AvatarFallback>CN</AvatarFallback>

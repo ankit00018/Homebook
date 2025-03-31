@@ -22,7 +22,6 @@ import { Button } from "./ui/button";
 import HomeBook from "@/assets/HomeBook.jpg";
 import CreateListing from "./CreateListing";
 
-
 const LeftSidebar = () => {
   const navigate = useNavigate();
   const { user } = useSelector((store) => store.auth);
@@ -63,6 +62,8 @@ const LeftSidebar = () => {
       navigate("/chat");
     } else if (textType === "Add Listing") {
       setOpenListing(true);
+    } else if (textType === "Explore") {
+      navigate("/property");
     }
   };
 
@@ -86,17 +87,21 @@ const LeftSidebar = () => {
     { icon: <LogOut />, text: "Logout" },
   ];
   return (
-    <div className="fixed top-0 z-10 left-0 px-4 border-r border-gray-300 w-[16%] h-screen bg-gradient-to-b from-gray-800 to-gray-900 text-white shadow-lg">
-      <div className="flex flex-col ">
+    <div className="fixed top-0 z-10 left-0 px-4 border-r border-gray-300 w-64 h-screen bg-white text-black shadow-lg">
+      <div className="flex flex-col">
         {/* <h1 className="my-8 pl-3 font-bold text-xl">LOGO</h1> */}
-        <img className="mx-0 mt-5 w-[90%] h-[90%] rounded-xl" src={HomeBook} alt="Homebook Logo" />
+        <img
+          className="mx-0 mt-5 w-[90%] h-[90%] rounded-xl"
+          src={HomeBook}
+          alt="Homebook Logo"
+        />
         <div>
           {sidebarItems.map((item, index) => {
             return (
               <div
                 onClick={() => sidebarHandler(item.text)}
                 key={index}
-                className="flex items-center gap-3 relative hover:bg-gray-600 cursor-pointer rounded-lg p-3 my-3 transition-all duration-300"
+                className="flex items-center gap-3 relative hover:bg-[linear-gradient(to_top,#2E42BF_0%,#9142CA_50%,#D037A2_100%)] hover:text-white cursor-pointer rounded-lg p-3 my-3 transition-all duration-300"
               >
                 {item.icon}
                 <span>{item.text}</span>
@@ -150,7 +155,9 @@ const LeftSidebar = () => {
         </div>
       </div>
       {open && <CreatePost open={open} setOpen={setOpen} />}
-      {openListing && <CreateListing open={openListing} setOpen={setOpenListing} />}
+      {openListing && (
+        <CreateListing open={openListing} setOpen={setOpenListing} />
+      )}
     </div>
   );
 };
