@@ -69,4 +69,36 @@ const getProperties = async (req, res) => {
   res.status(200).json(properties);
 };
 
-export { createProperty, getProperties };
+
+const deleteProperty = async (req, res) => {
+  try {
+    const property = await Property.findById(req.params.id);
+    
+    if (!property) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    // Check ownership
+    if (property.user.toString() !== req.id) {
+      return res.status(403).json({ message: "Not authorized" });
+    }
+
+    // Delete images from Cloudinary
+    for (const imageUrl of property.images) {
+      const publicId = imageUrl.split('/').pop().split('.')[0];
+      await cloudinary.uploader.destroy(publicId);
+    }
+
+    await Property.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({ 
+      success: true, 
+      message: "Property deleted successfully" 
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export { createProperty, getProperties, deleteProperty };

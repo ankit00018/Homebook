@@ -8,6 +8,8 @@ import { Loader2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthUser } from "@/redux/authSlice";
 import HomeBook from "@/assets/HomeBook.jpg";
+import HomePageLogo from "@/assets/HomePageLogo.jpg"
+
 
 
 const Login = () => {
@@ -68,7 +70,7 @@ const Login = () => {
       >
         <div className="flex items-center justify-center ">
           <img
-            src={HomeBook}
+            src={HomePageLogo}
             alt="Homebook Logo"
             className="flex items-center ml-2 h-20 w-500 rounded-lg"
           />

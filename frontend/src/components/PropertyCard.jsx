@@ -1,17 +1,22 @@
-import { ChevronLeft, ChevronRight, MessageSquareText } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  MessageSquareText,
+  Trash2,
+} from "lucide-react";
 import React, { useState } from "react";
 import { FaBed, FaBath, FaMapMarkerAlt, FaHeart } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
-// import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 // PropertyCard.jsx
-const PropertyCard = ({ property }) => {
+const PropertyCard = ({ property, onDelete }) => {
   const [liked, setLiked] = useState(false);
   const { title, price, location, bedrooms, bathrooms, images, area } =
     property;
 
   return (
-    <div className="border rounded-xl shadow-sm hover:shadow-md transition-all bg-white w-full"> 
+    <div className="border rounded-xl shadow-sm hover:shadow-md transition-all bg-white w-full">
       {/* Image Section */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <Carousel
@@ -22,7 +27,7 @@ const PropertyCard = ({ property }) => {
           renderArrowPrev={(onClick) => (
             <button
               onClick={onClick}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 p-1.5 rounded-full shadow-sm z-10 hover:bg-white transition-opacity opacity-0 group-hover:opacity-100"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white p-1.5 rounded-full shadow-sm z-10 hover:bg-gray-200"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -30,21 +35,29 @@ const PropertyCard = ({ property }) => {
           renderArrowNext={(onClick) => (
             <button
               onClick={onClick}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 p-1.5 rounded-full shadow-sm z-10 hover:bg-white transition-opacity opacity-0 group-hover:opacity-100"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-1.5 rounded-full shadow-sm z-10 hover:bg-gray-200"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           )}
         >
-          {images.map((img, index) => (
-            <div key={index} className="h-full w-full">
-              <img
-                src={img}
-                alt={title}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          ))}
+          {images && images.length > 0 ? (
+            images.map((img, index) => (
+              <div key={index} className="h-full w-full">
+                <img
+                  src={img}
+                  alt={title}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))
+          ) : (
+            <img
+              src="https://via.placeholder.com/300" // Fallback image
+              alt="No Image"
+              className="h-full w-full object-cover"
+            />
+          )}
         </Carousel>
 
         {/* Top Badges */}
@@ -57,15 +70,23 @@ const PropertyCard = ({ property }) => {
           </div>
         </div>
 
-        {/* Like Button */}
-        <button
-          onClick={() => setLiked(!liked)}
-          className={`absolute top-2 right-2 p-1.5 rounded-full backdrop-blur-sm ${
-            liked ? "text-red-500 bg-white/90" : "text-gray-300 bg-white/80"
-          }`}
-        >
-          <FaHeart className="w-5 h-5" />
-        </button>
+        {/* Like & Delete Buttons */}
+        <div className="absolute top-2 right-2 flex gap-2">
+          <button
+            onClick={() => setLiked(!liked)}
+            className={`p-1.5 rounded-full ${
+              liked ? "text-red-500" : "text-gray-300"
+            }`}
+          >
+            <FaHeart className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => onDelete && onDelete(property._id)} // Prevents errors if undefined
+            className="p-1.5 rounded-full text-gray-600 hover:text-red-600"
+          >
+            <Trash2 className="w-5 h-5" />
+          </button>
+        </div>
       </div>
 
       {/* Details Section */}

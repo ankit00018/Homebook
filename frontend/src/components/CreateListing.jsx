@@ -166,6 +166,26 @@ const CreateListing = ({ open, setOpen }) => {
               />
               <input
                 type="number"
+                placeholder="Bedrooms"
+                value={formData.bedrooms}
+                onChange={(e) =>
+                  setFormData({ ...formData, bedrooms: e.target.value })
+                }
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+              <input
+                type="number"
+                placeholder="Bathrooms"
+                value={formData.bathrooms}
+                onChange={(e) =>
+                  setFormData({ ...formData, bathrooms: e.target.value })
+                }
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+              <input
+                type="number"
                 placeholder="Area (sqft)"
                 value={formData.area}
                 onChange={(e) =>
@@ -190,7 +210,7 @@ const CreateListing = ({ open, setOpen }) => {
                       key={index}
                       src={img}
                       alt={`preview-${index}`}
-                      className="w-32 h-32 object-cover rounded-md"
+                      className="w-full h-full object-cover rounded-md"
                     />
                   ))}
                 </div>

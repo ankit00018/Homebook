@@ -13,10 +13,10 @@ const listingSlice = createSlice({
       state.listings = action.payload;
     },
     addListing: (state, action) => {
-      state.listings = action.payload; // Adds new listing at the beginning
+      state.listings.push(action.payload);
     },
     removeListing: (state, action) => {
-      state.listings = state.listings.filter(listing => listing.id !== action.payload);
+      state.listings = state.listings.filter(listing => listing._id !== action.payload);
     },
   },
 });
