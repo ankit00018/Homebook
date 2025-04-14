@@ -19,12 +19,12 @@ import CreatePost from "./CreatePost";
 import { setPosts, setSelectedPost } from "@/redux/postSlice";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
-import HomeBook from "@/assets/HomeBook.jpg";
-import HomePageLogo from "@/assets/HomePageLogo.jpg"
+import HomePageLogo from "@/assets/HomePageLogo.jpg";
 import CreateListing from "./CreateListing";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
+  const [displayedNotifications, setDisplayedNotifications] = useState([]);
   const { user } = useSelector((store) => store.auth);
   const { likeNotification } = useSelector(
     (store) => store.realTimeNotification
@@ -51,15 +51,20 @@ const LeftSidebar = () => {
   };
 
   // Add this utility function to determine active state
-const getPathForItem = (text) => {
-  switch(text) {
-    case "Home": return "/";
-    case "Profile": return `/profile/${user?._id}`;
-    case "Messages": return "/chat";
-    case "Explore": return "/property";
-    default: return "";
-  }
-};
+  const getPathForItem = (text) => {
+    switch (text) {
+      case "Home":
+        return "/";
+      case "Profile":
+        return `/profile/${user?._id}`;
+      case "Messages":
+        return "/chat";
+      case "Explore":
+        return "/property";
+      default:
+        return "";
+    }
+  };
 
   const sidebarHandler = (textType) => {
     if (textType === "Logout") {
@@ -111,7 +116,10 @@ const getPathForItem = (text) => {
           {sidebarItems.map((item, index) => {
             return (
               <div
-                onClick={() => sidebarHandler(item.text)}
+                onClick={() => {
+                  // Don't trigger sidebar navigation for notifications
+                  if (item.text !== "Notifications") sidebarHandler(item.text);
+                }}
                 key={index}
                 className={`flex items-center gap-3 relative 
                   hover:bg-[#2E42BF]/10 
@@ -119,8 +127,11 @@ const getPathForItem = (text) => {
                   hover:text-[#2E42BF] 
                   cursor-pointer rounded-lg p-3 my-3 
                   transition-all duration-300
-                  ${location.pathname === getPathForItem(item.text) ? 
-                    "bg-[#2E42BF]/10 border-l-4 border-[#9142CA]" : ""}`}
+                  ${
+                    location.pathname === getPathForItem(item.text)
+                      ? "bg-[#2E42BF]/10 border-l-4 border-[#9142CA]"
+                      : ""
+                  }`}
               >
                 {item.icon}
                 <span>{item.text}</span>
@@ -128,12 +139,12 @@ const getPathForItem = (text) => {
                   likeNotification.length > 0 && (
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button
-                          size="icon"
-                          className="rounded-full h-5 w-5 bg-red-600 hover:bg-red-600 absolute bottom-6 left-6"
-                        >
-                          {likeNotification.length}
-                        </Button>
+                        {/* Entire notification area acts as trigger */}
+                        <div
+                          className="absolute inset-0"
+                          onClick={(e) => e.stopPropagation()}
+                          
+                        />
                       </PopoverTrigger>
                       <PopoverContent>
                         <div>
@@ -167,6 +178,18 @@ const getPathForItem = (text) => {
                         </div>
                       </PopoverContent>
                     </Popover>
+                  )}
+                {/* Notification counter */}
+                {item.text === "Notifications" &&
+                  likeNotification.length > 0 && (
+                    <div className="absolute top-1 right-2">
+                      <Button
+                        size="icon"
+                        className="rounded-full h-5 w-5 bg-red-600 hover:bg-red-600"
+                      >
+                        {likeNotification.length}
+                      </Button>
+                    </div>
                   )}
               </div>
             );
