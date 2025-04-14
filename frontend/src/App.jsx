@@ -14,6 +14,8 @@ import { setOnlineUsers } from './redux/chatSlice'
 import { setLikeNotification } from './redux/rtnSlice'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import DisplayProp from './components/DisplayProp'
+import ContractTemplates from './components/ContractTemplates'
+import RegulatoryUpdates from './components/RegulatoryUpdates'
 
 
 const browserRouter = createBrowserRouter([
@@ -41,6 +43,14 @@ const browserRouter = createBrowserRouter([
         path:"/property",
         element:<ProtectedRoutes><DisplayProp /></ProtectedRoutes>
       },
+      {
+        path:"/templates",
+        element:<ProtectedRoutes><ContractTemplates /></ProtectedRoutes>
+      },
+      {
+        path:"/regulatory-updates",
+        element:<ProtectedRoutes><RegulatoryUpdates /></ProtectedRoutes>
+      }
     ]
   },
   {

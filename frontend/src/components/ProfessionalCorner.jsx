@@ -1,6 +1,20 @@
 import { Video, FileText, AlertCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const ProfessionalCorner = () => {
+
+  const navigate = useNavigate()
+
+  const handleNavigation = (resourceTitle) => {
+    if(resourceTitle === "Contract Templates") {
+      navigate('/templates');
+    }
+    if(resourceTitle === "Regulatory Updates") {
+      navigate('/regulatory-updates');
+    }
+  }; // Closing the function properly
+
+  
   const resources = [
     {
       icon: <Video className="w-4 h-4" />,
@@ -32,6 +46,7 @@ export const ProfessionalCorner = () => {
         {resources.map((resource, index) => (
           <li
             key={index}
+            onClick={() => handleNavigation(resource.title)}
             className="flex items-center justify-between gap-3 p-3 rounded-xl hover:bg-blue-50/50 transition-colors border border-transparent hover:border-blue-100 cursor-pointer"
           >
             <div className="flex items-center gap-3">

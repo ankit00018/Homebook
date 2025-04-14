@@ -1,13 +1,15 @@
 import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SuggestedUsers from './SuggestedUsers';
 import QuickAccessTools from './QuickAccessTools';
 import ProfessionalCorner from './ProfessionalCorner';
 
 const RightSidebar = () => {
   const { user } = useSelector(store => store.auth);
+
+  
 
   return (
     <div className="w-[400px] px-4 py-6 bg-white shadow-md border border-gray-300 hidden lg:block">
