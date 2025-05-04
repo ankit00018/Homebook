@@ -15,6 +15,7 @@ const EditProfile = () => {
     const { user } = useSelector(store => store.auth);
     const [loading, setLoading] = useState(false);
     const [input, setInput] = useState({
+        
         profilePhoto: user?.profilePicture,
         bio: user?.bio,
         gender: user?.gender
