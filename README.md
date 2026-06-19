@@ -1,7 +1,5 @@
 # HomeBook - Real Estate Social Media Platform
 
-![HomeBook Banner](https://raw.githubusercontent.com/ankit00018/homebook/main/frontend/src/assets/Site%20Mockup.png)
-
 A modern social platform connecting property enthusiasts, real estate professionals, and home seekers. Discover properties through social interactions, share listings with your network, and collaborate with industry experts in a community-driven environment.
 
 ## 🌟 Key Features
